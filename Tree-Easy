@@ -1,0 +1,43 @@
+// Q.1 Binay try inorder travesal 
+class Solution {
+public:
+   void InOrder(TreeNode* root, vector<int>&ans){
+    if(root!=NULL){
+    InOrder(root->left,ans);
+    ans.push_back(root->val);
+    InOrder(root->right,ans);
+   }
+}
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int>ans;
+            InOrder(root,ans);
+        return ans;
+    }
+};
+
+
+// Q.2Balenced Binary Tree
+class Solution {
+public:
+    int hight(TreeNode*& root){
+        // base case
+        if(root==NULL) {
+            return 0;
+        }
+        // recursive calls
+       int leftht= hight(root->left);
+       int rightht= hight(root->right);
+    //    edge cases 
+       if (leftht==-1||rightht==-1||abs(leftht-rightht)>1){
+        return -1;
+       }
+    //    hight 
+       return 1+max(leftht,rightht);
+    }
+    bool isBalanced(TreeNode* root) {
+        // if hight (root)!=-1 means usse jyada h to 0 return karega means 
+        // not balance
+        return hight(root)!=-1;
+    }
+};
+
